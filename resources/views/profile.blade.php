@@ -332,7 +332,7 @@
                     </div>
 
                     <div class="">
-                        <label class="block text-sm font-medium leading-6 text-gray-900">Фотография</label>
+                        <label class="block text-sm font-medium leading-6 text-gray-900">Фотография<span class="text-red-400">*</span></label>
                         @error('image')
                             <span class="text-sm text-red-400">{{ $message }}</span>
                         @enderror

@@ -44,4 +44,20 @@ class UserProfile extends Model
         return $this->hasMany(ProfilePreference::class, 'profile_id');
     }
 
+    public function getUsersActiveProfiles() {
+        return UserProfile::query()
+            ->with('user')
+            ->whereNotNull('country')
+            ->whereNotNull('city')
+            ->whereNotNull('nationality')
+            ->whereNotNull('profession')
+            ->whereNotNull('work_place')
+            ->whereNotNull('status')
+            ->whereNotNull('height')
+            ->whereNotNull('weight')
+            ->whereNotNull('education')
+            ->whereNotNull('image')
+            ->get();
+    }
+
 }

@@ -37,7 +37,7 @@ class UserProfileStoreRequest extends FormRequest
             'facebook' => ['nullable', 'string'],
 
             'image' => ['image', 'mimes:jpeg,png,jpg', 'max:2048'],
-            'message' => ['required', 'string', 'max:255'],
+            'message' => ['nullable', 'string', 'max:255'],
         ];
     }
 
@@ -65,7 +65,6 @@ class UserProfileStoreRequest extends FormRequest
             'image.mimes' => 'Изображение должно быть формата: jpeg, png, jpg.',
             'image.max' => 'Размер изображения не должен превышать 2 МБ.',
 
-            'message.required' => 'Сообщение обязательно для заполнения.',
             'message.string' => 'Сообщение должно быть строкой.',
             'message.max' => 'Сообщение не должно превышать 255 символов.',
         ];

@@ -15,7 +15,6 @@ class RegisterController extends Controller
         return view('register');
     }
 
-
     /**
      * 
      * Create user account
@@ -89,8 +88,7 @@ class RegisterController extends Controller
      * Generate user profile ID
      * 
      */
-    private function generateRandomUserProfileID()
-    {
+    private function generateRandomUserProfileID() {
         do {
             $randomId = mt_rand(100000, 999999);
         } while (UserProfile::where('id', $randomId)->exists());
