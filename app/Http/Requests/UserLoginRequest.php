@@ -22,7 +22,7 @@ class UserLoginRequest extends FormRequest
     public function rules(): array
     {
         $rules = [
-            'telephone' => ['required', 'max:20'],
+            'telephone' => ['required', 'max:20', 'regex:/^\+7 \d{3} \d{3} \d{2} \d{2}$/'],
             'sms-code' => ['']
         ];
 
@@ -40,6 +40,7 @@ class UserLoginRequest extends FormRequest
         return [
             'telephone.required' => 'Номер телефона обязателен для заполнения.',
             'telephone.max' => 'Номер телефона не должен превышать 20 символов.',
+            'telephone.regex' => 'Некорректный формат номера телефона.',
             'sms-code.required' => 'СМС код обязателен для заполнения.',
         ];
     }

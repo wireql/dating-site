@@ -25,7 +25,7 @@ class UserStoreRequest extends FormRequest
             'gender' => ['required', 'in:1,2'],
             'username' => ['required', 'max:255'],
             'birthday' => ['required', 'date'],
-            'telephone' => ['required', 'max:20'],
+            'telephone' => ['required', 'max:20', 'regex:/^\+7 \d{3} \d{3} \d{2} \d{2}$/'],
             'sms-code' => ['']
         ];
 
@@ -49,6 +49,7 @@ class UserStoreRequest extends FormRequest
             'birthday.date' => 'Дата рождения должна быть действительной датой.',
             'telephone.required' => 'Номер телефона обязателен для заполнения.',
             'telephone.max' => 'Номер телефона не должен превышать 20 символов.',
+            'telephone.regex' => 'Некорректный формат номера телефона.',
             'sms-code.required' => 'СМС код обязателен для заполнения.',
         ];
     }
