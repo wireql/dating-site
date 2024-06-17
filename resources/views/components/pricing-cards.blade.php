@@ -4,9 +4,9 @@
             <h2 class="mb-4 text-5xl font-bold">Доступные тарифы</h2>
             <p class="mb-5 font-light text-gray-500 sm:text-xl">Доступные тарифы для покупки.</p>
         </div>
-        <div class="md:flex justify-center gap-10">
+        <div class="flex flex-col md:flex-row justify-center gap-10">
             <!-- Pricing Card -->
-            <div class="flex flex-col p-6 max-w-lg text-center text-gray-900 bg-white rounded-lg border border-gray-100 shadow dark:text-white">
+            <div class="max-w-full flex flex-col p-6 md:max-w-lg text-center text-gray-900 bg-white rounded-lg border border-gray-100 shadow dark:text-white">
                 <h3 class="mb-4 text-2xl font-medium">5 анкет</h3>
                 <div class="flex justify-center items-baseline mb-4">
                     <span class="mr-2 text-5xl font-extrabold">1 000₸</span>
@@ -27,7 +27,7 @@
                 <a href="#" class="mt-auto text-white bg-slate-900 hover:bg-primary-700 focus:ring-4 focus:ring-primary-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:text-white  dark:focus:ring-primary-900">Купить</a>
             </div>
             <!-- Pricing Card -->
-            <div class="flex flex-col p-6 max-w-lg text-center text-gray-900 bg-white rounded-lg border border-gray-100 shadow dark:text-white">
+            <div class="max-w-full flex flex-col p-6  md:max-w-lg text-center text-gray-900 bg-white rounded-lg border border-gray-100 shadow dark:text-white">
                 <h3 class="mb-4 text-2xl font-medium">10 анкет</h3>
                 <div class="flex justify-center items-baseline mb-4">
                     <span class="mr-2 text-5xl font-extrabold">2 000₸</span>
@@ -48,7 +48,7 @@
                 <a href="#" class="mt-auto text-white bg-slate-900 hover:bg-primary-700 focus:ring-4 focus:ring-primary-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:text-white  dark:focus:ring-primary-900">Купить</a>
             </div>
             <!-- Pricing Card -->
-            <div class="flex flex-col p-6 max-w-lg text-center text-gray-900 bg-white rounded-lg border border-gray-100 shadow dark:text-white">
+            <div class="max-w-full flex flex-col p-6 md:max-w-lg text-center text-gray-900 bg-white rounded-lg border border-gray-100 shadow dark:text-white">
                 <h3 class="mb-4 text-2xl font-medium">10 анкет</h3>
                 <div class="flex justify-center items-baseline mb-4">
                     <span class="mr-2 text-5xl font-extrabold">2 500₸</span>

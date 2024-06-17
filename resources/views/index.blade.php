@@ -96,6 +96,43 @@
 
         --}}
         <x-pricing-cards />
+
+
+        {{-- 
+    
+        Feedback
+
+        --}}
+        <div class="my-20">
+            <div class="text-5xl font-bold text-center mb-10" id="feedback">Отзывы</div>
+
+
+            <div class="carousel" data-flickity='{ "autoPlay": true }'>
+                <div class="carousel-cell w-full flex justify-center">
+                    <div class="lg:max-w-5xl flex gap-5 items-center max-w-64 sm:max-w-sm md:max-w-md flex-col lg:flex-row">
+                        <div class="max-w-96">
+                            <img class="w-full" src="{{asset('storage/images/feedback/1.jpg')}}" alt="" srcset="">
+                        </div>
+                        <div class="flex flex-col gap-3">
+                            <div class="font-bold text-3xl">Максим и Ксения</div>
+                            <div class="text-md">Lorem ipsum, dolor sit amet consectetur adipisicing elit. At nesciunt magnam quam sequi, reprehenderit consectetur accusantium possimus ipsa vel tenetur saepe facilis hic quasi itaque repudiandae omnis dignissimos quo dolorem.</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="carousel-cell w-full flex justify-center">
+                    <div class="lg:max-w-5xl flex gap-5 items-center max-w-64 sm:max-w-sm md:max-w-md flex-col lg:flex-row">
+                        <div class="max-w-96">
+                            <img class="w-full" src="{{asset('storage/images/feedback/1.jpg')}}" alt="" srcset="">
+                        </div>
+                        <div class="flex flex-col gap-3">
+                            <div class="font-bold text-3xl">Максим и Ксения</div>
+                            <div class="text-md">Lorem ipsum, dolor sit amet consectetur adipisicing elit. At nesciunt magnam quam sequi, reprehenderit consectetur accusantium possimus ipsa vel tenetur saepe facilis hic quasi itaque repudiandae omnis dignissimos quo dolorem.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         
 
     </div>

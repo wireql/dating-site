@@ -6,7 +6,7 @@
         <div class="hidden lg:flex items-center gap-10 text-slate-600 text-lg font-medium">
             <a href="{{route('index')}}" class="">Главная</a>
             <a href="/#tariffs" class="">Тарифы</a>
-            <a href="#" class="">Отзывы</a>
+            <a href="/#feedback" class="">Отзывы</a>
         </div>
         @guest
             <a href="{{route('login')}}" class="hidden lg:flex items-center font-semibold text-sm gap-1 border-2 border-gray-300 rounded-3xl hover:cursor-pointer px-4 py-2">
@@ -54,9 +54,9 @@
             <div class="mt-6 flow-root">
                 <div class="-my-6 divide-y divide-gray-500/10">
                     <div class="space-y-2 py-6">
-                        <a href="#" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Главная</a>
-                        <a href="#" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Тарифы</a>
-                        <a href="#" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Отзывы</a>
+                        <a href="{{route('index')}}" @click="open = false" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Главная</a>
+                        <a href="/#tariffs" @click="open = false" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Тарифы</a>
+                        <a href="/#feedback" @click="open = false" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Отзывы</a>
                     </div>
                     <div class="py-6">
                         @guest

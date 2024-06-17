@@ -9,19 +9,19 @@
                     Навигация
                     </p>
                     <li>
-                    <a href="#"
+                    <a href="{{route('index')}}"
                         class="block py-1.5 font-sans text-base font-normal leading-relaxed text-gray-700 antialiased transition-colors hover:text-blue-gray-900">
                         Главная
                     </a>
                     </li>
                     <li>
-                    <a href="#"
+                    <a href="/#tariffs"
                         class="block py-1.5 font-sans text-base font-normal leading-relaxed text-gray-700 antialiased transition-colors hover:text-blue-gray-900">
                         Тарифы
                     </a>
                     </li>
                     <li>
-                    <a href="#"
+                    <a href="/#feedback"
                         class="block py-1.5 font-sans text-base font-normal leading-relaxed text-gray-700 antialiased transition-colors hover:text-blue-gray-900">
                         Отзывы
                     </a>
