@@ -33,4 +33,43 @@ $(document).ready(function(){
         }
     });
 
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+    $(".setFavourite").click(function() {
+        $.ajax({
+            url: "/profile/favourites/add",
+            method: "POST",
+            data: {
+                profile_id: $(this).data('profile_id')
+            },
+            success: function(response, textStatus, xhr) {
+                $("#resp-message").html(`<span class="text-green-400">`+response.message+`</span>`)
+
+                if(response.status == 100) {
+                    $(".setFavourite[data-profile_id='" + response.profile_id + "'].active").removeClass('hidden');
+                    $(".setFavourite[data-profile_id='" + response.profile_id + "']:not(.active)").addClass('hidden');
+                }else {
+                    $(".setFavourite[data-profile_id='" + response.profile_id + "'].active").addClass('hidden');
+                    $(".setFavourite[data-profile_id='" + response.profile_id + "']:not(.active)").removeClass('hidden');
+                }
+            },
+            error: function(xhr) {
+                switch (xhr.status) {
+                    case 400:
+                        $("#resp-message").html(`<span class="text-orange-300">`+xhr.responseJSON.message+`</span>`)
+                        break;
+                
+                    default:
+                        $("#resp-message").html(`<span class="text-red-400">`+xhr.responseJSON.message+`</span>`)
+                        break;
+                }
+            }
+        });
+    })
+
+
 });

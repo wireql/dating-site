@@ -30,6 +30,10 @@ Route::middleware(['auth'])->group(function () {
     
     Route::get('/profile', [ProfileController::class, 'create'])->name('profile');
     Route::post('/profile', [ProfileController::class, 'store'])->name('profile.store');
+
+    Route::get('/profile/favourites', [ProfileController::class, 'favourites'])->name('profile.favourites');
+    Route::post('/profile/favourites/add', [ProfileController::class, 'addFavourites'])->name('profile.favourites-add');
+    
     Route::get('/logout', [LoginController::class, 'logout'])->name('login.logout');
 
 });

@@ -24,11 +24,11 @@
         --}}
         <x-landing.hello-section />
 
-
         <div x-data="{ filter: false }">
             <div class="flex flex-col gap-3">
                 <div class="text-4xl font-bold">Отыщите того с кем вам будет лучше</div>
                 <div class="text-lg font-medium text-gray-400">Воспользуйтесь фильтром для лучшего поиска</div>
+                <div id="resp-message"></div>
             </div>
 
             <div class="flex justify-between mt-5 items-end">
@@ -83,7 +83,7 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-5 mt-5">
 
                 @foreach ($users as $item)
-                    <x-user-card :data="$item" />                    
+                    <x-user-card :data="$item" :favourites="$favourites" />
                 @endforeach
 
             </div>
