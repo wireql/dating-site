@@ -22,9 +22,6 @@
     --}}
     <div class="container mx-auto px-4 mb-20">
 
-        {{-- {{$user}} --}}
-
-
         <div class="flex flex-col md:flex-row mt-10 gap-5">
             {{-- User short information --}}
             <div class="w-full md:max-w-64">

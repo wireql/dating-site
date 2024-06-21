@@ -81,7 +81,7 @@ class ProfileController extends Controller
             $profileService->edit($request);
         } catch (\Exception $e) {
             return redirect()->route('profile')->withErrors([
-                'msg-error' => 'При редактировании анкеты произошла ошибка.'
+                'msg-error' => $e->getMessage()
             ]);
         }
         

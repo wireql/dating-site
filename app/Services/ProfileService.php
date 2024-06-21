@@ -9,6 +9,9 @@ use App\Models\ProfileHobby;
 use App\Models\ProfilePreference;
 use App\Models\UserProfile;
 
+use Intervention\Image\ImageManager;
+use Intervention\Image\Drivers\Gd\Driver;
+
 class ProfileService {
 
     public function edit(UserProfileStoreRequest $request) {
@@ -50,9 +53,12 @@ class ProfileService {
         $imageName = $user[0]['profile']['image'];
 
         if($request->hasFile('image')) {
-            $image = $request->file('image');
-            $imageName = time().'.'.$image->getClientOriginalExtension();
-            $image->storeAs('public/images', $imageName);
+            $time = time();
+            $imageName = $time.'.'.$request->file('image')->getClientOriginalExtension();
+            $imageNameBlur = 'blur_'.$time.'.'.$request->file('image')->getClientOriginalExtension();
+
+            $this->saveOriginalImage($request->file('image'), $imageName);
+            $this->saveBlurImage($request->file('image'), $imageNameBlur);
         }
 
         $user_profile->update([
@@ -72,6 +78,19 @@ class ProfileService {
             'image' => $imageName,
         ]);
 
+    }
+
+    protected function saveOriginalImage($image, $imageName) {
+        $image->storeAs('public/images', $imageName);
+    }
+
+    protected function saveBlurImage($image, $imageName) {
+        $manager = new ImageManager(new Driver());
+        $image = $manager->read($image);
+        $img = $image->blur(10);
+        $img = $image->pixelate(10);
+
+        $img->save(base_path('public/storage/images/' . $imageName));
     }
 
 }
