@@ -8,7 +8,8 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\ProfileHobby;
 use App\Models\ProfilePreference;
 use App\Models\UserProfile;
-
+use App\Models\UserViewProfile;
+use Intervention\Image\Colors\Profile;
 use Intervention\Image\ImageManager;
 use Intervention\Image\Drivers\Gd\Driver;
 
@@ -78,6 +79,22 @@ class ProfileService {
             'image' => $imageName,
         ]);
 
+    }
+
+    public function openProfileInfo($profile_id) {
+        $user_id = Auth::user()->id;
+
+        $user_open_profile = UserViewProfile::query()
+            ->where('profile_id', '=', $profile_id)
+            ->where('user_id', '=', $user_id)
+            ->first();
+
+        if($user_open_profile) {
+            dd("OK");
+        }
+
+        dd("ERROR");
+        
     }
 
     protected function saveOriginalImage($image, $imageName) {

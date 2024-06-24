@@ -3,6 +3,7 @@
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ProfileOpenInfoController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\UserProfileController;
 use Illuminate\Support\Facades\Route;
@@ -41,5 +42,5 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/logout', [LoginController::class, 'logout'])->name('login.logout');
 
     Route::get('/profile/{id}', [UserProfileController::class, 'create'])->name('user');
-
+    Route::post('/profile/{id}', [ProfileOpenInfoController::class, 'store'])->name('user.open');
 });

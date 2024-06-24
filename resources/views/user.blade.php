@@ -31,7 +31,7 @@
         <div class="flex flex-col md:flex-row mt-10 gap-5">
             {{-- User short information --}}
             <div class="w-full md:max-w-64">
-                <img class="w-full rounded-3xl h-96 object-cover" src="{{ asset('storage/images/' . ($profile[0]['image'] ?? 'user-logo.png')) }}" alt="">
+                <img class="w-full rounded-3xl h-96 object-cover" src="{{ asset('storage/images/blur_' . ($profile[0]['image'] ?? 'user-logo.png')) }}" alt="">
                 <div class="flex flex-col mt-3">
                     <div class="font-medium text-lg">{{$profile[0]['user']['username']}}</div>
                     <div class="text-md text-slate-500">{{$telephone}}</div>
@@ -40,11 +40,19 @@
 
             {{-- User profile information --}}
             <div class="flex flex-col gap-5 max-w-3xl w-full">
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
-                    <a href="/" class="flex items-center w-full border border-slate-900 text-black px-4 py-2 rounded-md font-medium text-sm text-center">Открыть секретную информацию</a>
-                    <a href="/" class="flex items-center w-full border border-slate-900 text-black px-4 py-2 rounded-md font-medium text-sm text-center">Открыть номер телефона</a>
-                    <a href="/" class="flex items-center w-full border border-slate-900 text-black px-4 py-2 rounded-md font-medium text-sm text-center">Открыть социцальные сети</a>
-                </div>
+                <form method="POST" action="{{route('user.open', $profile[0]['id'])}}" class="grid grid-cols-1 md:grid-cols-3 gap-5">
+                    @csrf
+
+                    <button type="submit" name="action" value="profile" class="flex items-center w-full border border-slate-900 text-black px-4 py-2 rounded-md font-medium text-sm text-center">
+                        Открыть закрытую информацию
+                    </button>
+                    <button type="submit" name="action" value="telephone" class="flex items-center w-full border border-slate-900 text-black px-4 py-2 rounded-md font-medium text-sm text-center">
+                        Открыть номер телефона
+                    </button>
+                    <button type="submit" name="action" value="social" class="flex items-center w-full border border-slate-900 text-black px-4 py-2 rounded-md font-medium text-sm text-center">
+                        Открыть социцальные сети
+                    </button>
+                </form>
 
                 <div class="font-medium text-xl">Открытые данные</div>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-3xl w-full">

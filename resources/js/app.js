@@ -39,7 +39,9 @@ $(document).ready(function(){
         }
     });
 
-    $(".setFavourite").click(function() {
+    $(".setFavourite").click(function(event) {
+        event.preventDefault();
+        event.stopPropagation();
         $.ajax({
             url: "/profile/favourites/add",
             method: "POST",
