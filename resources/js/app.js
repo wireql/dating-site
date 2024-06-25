@@ -74,4 +74,23 @@ $(document).ready(function(){
     })
 
 
+    let currentStep = 0;
+    let steps = $(".step");
+
+    function showStep(step) {
+        steps.removeClass("active");
+        steps.eq(step).addClass("active");
+    }
+
+    $(".btn-next").click(function() {
+        currentStep++;
+        showStep(currentStep);
+    });
+
+    $(".btn-prev").click(function() {
+        currentStep--;
+        showStep(currentStep);
+    });
+
+
 });
