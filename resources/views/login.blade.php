@@ -34,7 +34,7 @@
                 @if (session('is_sms_code'))
                     <div>
                         <label for="sms-code" class="block text-sm font-medium leading-6 text-gray-900">Код из СМС</label>
-                        Временно, код: {{session('sms-code')}}
+                        {{-- Временно, код: {{session('sms-code')}} --}}
                         @error('sms-code')
                             <span class="text-sm text-red-400">{{ $message }}</span>
                         @enderror
@@ -59,6 +59,7 @@
                                 timeLeft--;
 
                                 if (timeLeft < 0) {
+                                    $('#sms_code_timer').text('Повторите авторизацию еще раз.');
                                     clearInterval(timerInterval);
                                 }
                             }

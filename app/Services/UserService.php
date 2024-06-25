@@ -14,6 +14,8 @@ class UserService {
 
     public function login(UserLoginRequest $request) {
 
+        $SMSCService = new SMSCService();
+
         /**
          * 
          * Validation an sms code
@@ -62,16 +64,19 @@ class UserService {
         $user->update([
             'code' => $code
         ]);
+        $resp = $SMSCService->sendSMS($numeric_telephone, "Ваш код: " . $code);
 
         /**
          * Временно
          */
-        $request->session()->put('sms-code', $code);
+        // $request->session()->put('sms-code', $code);
 
         $request->session()->put('user_id', $user['id']);
     }
 
     public function registration(UserStoreRequest $request) {
+
+        $SMSCService = new SMSCService();
 
         /**
          * 
@@ -102,7 +107,12 @@ class UserService {
                 'user_id' => $user->id
             ]);
 
+            if (!Auth::login($user, $remember = true)) {
+                throw new \Exception("Ошибка при авторизации.");
+            }
+
             $request->session()->flush();
+            $request->session()->regenerate();
 
             return true;
         }
@@ -124,12 +134,17 @@ class UserService {
         $code = mt_rand(1000, 9999);
 
         UserCode::createCode($user_hash, $code);
-        
+
+        /**
+         * Отправка сообщения на номер телефона
+         */
+        // $resp = $SMSCService->sendSMS($request['telephone'], "Ваш код: " . $code, 0, 0, 0, 0, false, "imgcode=".$request["code"]."&userip=".$_SERVER["REMOTE_ADDR"]);
+        $resp = $SMSCService->sendSMS($request['telephone'], "Ваш код: " . $code);
 
         /**
          * Временно
          */
-        $request->session()->put('sms-code', $code);
+        // $request->session()->put('sms-code', $code);
         
         $request->session()->put('user_hash', $user_hash);
         $request->session()->put('user_data', $request->all());

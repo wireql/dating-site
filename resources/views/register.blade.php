@@ -30,7 +30,7 @@
                 @if (session('is_sms_code'))
                     <div>
                         <label for="sms-code" class="block text-sm font-medium leading-6 text-gray-900">Код из СМС</label>
-                        Временно, код: {{session('sms-code')}}
+                        {{-- Временно, код: {{session('sms-code')}} --}}
                         @error('sms-code')
                             <span class="text-sm text-red-400">{{ $message }}</span>
                         @enderror
@@ -59,6 +59,7 @@
 
                                 if (timeLeft < 0) {
                                     clearInterval(timerInterval);
+                                    $('#sms_code_timer').text('Повторите регистрацию еще раз.');
                                 }
                             }
 
@@ -129,6 +130,10 @@
                             @enderror
                             <div class="mt-2">
                                 <input id="telephone" name="telephone" value="{{old('telephone')}}" type="text" class="block w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6">
+                            </div>
+                            <div class="mt-2 flex items-center align-middle">
+                                <input required type="checkbox" name="accept" class="h-4 w-4 text-black border-gray-300 rounded focus:ring-black">
+                                <label class="ml-2 block text-sm text-gray-900">Даю согласие на обработку персональных данных</label>
                             </div>
                         </div>
                         <div class="w-full flex flex-col gap-1">
