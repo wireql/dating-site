@@ -9,23 +9,35 @@ class ProfileOpenInfoController extends Controller
 {
     public function store(Request $request, ProfileService $profileService, $id) {
         
-        switch ($request->input('action')) {
-            case 'profile':
+        try {
+            switch ($request->input('action')) {
+                case 'profile':
+    
+                    $result = $profileService->openProfileInfo($id);
+    
+                    break;
+                case 'telephone':
 
-                $profileService->openProfileInfo($id);
+                    $result = $profileService->openTelephoneInfo($id);
 
-                break;
-            case 'telephone':
-                # code...
-                break;
-            case 'social':
-                # code...
-                break;
-            
-            default:
-                # code...
-                break;
+                    break;
+                case 'social':
+
+                    $result = $profileService->openSocialInfo($id);
+
+                    break;
+                
+                default:
+                    # code...
+                    break;
+            }
+        } catch (\Exception $e) {
+            return redirect()->route('user', $id)->withErrors([
+                'msg-error' => $e->getMessage()
+            ]);
         }
+
+        return redirect()->route('user', $id)->with('msg-success', $result['message']);
 
     }
 }

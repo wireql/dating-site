@@ -6,6 +6,7 @@ use App\Http\Requests\UserProfileStoreRequest;
 use App\Models\User;
 use App\Models\UserFavourites;
 use App\Models\UserProfile;
+use App\Models\UserViewProfile;
 use App\Services\ProfileService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -16,7 +17,7 @@ class ProfileController extends Controller
         $user = User::query()->where('id', '=', Auth::user()->id)->with('profile')->with('profile.hobbies')->with('profile.preferences')->get();
 
         return view('profile', [
-            'user' => $user
+            'user' => $user,
         ]);
     }
 
@@ -25,12 +26,14 @@ class ProfileController extends Controller
         $user = User::query()->where('id', '=', Auth::user()->id)->get();
         $favourites = UserFavourites::query()->where('user_id', '=', Auth::user()->id)->with('profile')->with('profile.user')->get();
         $favourites_list = UserFavourites::query()->where('user_id', '=', Auth::user()->id)->get();
+        $opened_profiles = UserViewProfile::query()->where('user_id', '=', Auth::user()->id)->get();
 
         return view('profile', [
             'user' => $user,
             'favourites' => 1,
             'favourites_data' => $favourites,
-            'favourites_list' => $favourites_list
+            'favourites_list' => $favourites_list,
+            'opened_profiles' => $opened_profiles
         ]);
     }
 

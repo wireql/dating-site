@@ -55,7 +55,7 @@
             <p
             class="block mb-4 font-sans text-sm antialiased font-normal leading-normal text-center text-blue-gray-900 md:mb-0">
             2024
-            <a href="https://material-tailwind.com/">jup.kz</a>.
+            <a href="{{route('index')}}">jup.kz</a>.
             </p>
             <div class="flex gap-4 text-blue-gray-900 sm:justify-center">
             <a href="#" class="block font-sans text-base antialiased font-light leading-relaxed transition-opacity text-inherit opacity-80 hover:opacity-100">

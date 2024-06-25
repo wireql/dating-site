@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class UserViewTelephone extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'user_id',
+        'profile_id',
+    ];
 }

@@ -7,6 +7,9 @@
     $currentDate = new DateTime();
     
     $age = $currentDate->diff($birthDateObj)->y;
+
+    $opened_social = \App\Models\UserViewSocial::query()->where('user_id', '=', Auth::user()->id)->where('profile_id', '=', $profile[0]['id'])->first();
+    $opened_telephone = \App\Models\UserViewTelephone::query()->where('user_id', '=', Auth::user()->id)->where('profile_id', '=', $profile[0]['id'])->first();
 @endphp
 
 @extends('layouts/index')
@@ -20,7 +23,6 @@
     --}}
     <x-header />
 
-
     {{-- 
     
     Main content
@@ -31,25 +33,32 @@
         <div class="flex flex-col md:flex-row mt-10 gap-5">
             {{-- User short information --}}
             <div class="w-full md:max-w-64">
-                <img class="w-full rounded-3xl h-96 object-cover" src="{{ asset('storage/images/blur_' . ($profile[0]['image'] ?? 'user-logo.png')) }}" alt="">
+                <img class="w-full rounded-3xl h-96 object-cover" src="{{ asset('storage/images/' . (!$opened_profile ? 'blur_' : '') . ($profile[0]['image'] ?? 'user-logo.png')) }}" alt="">
                 <div class="flex flex-col mt-3">
-                    <div class="font-medium text-lg">{{$profile[0]['user']['username']}}</div>
-                    <div class="text-md text-slate-500">{{$telephone}}</div>
+                    <div class="font-medium text-lg">@if(!$opened_profile) ********** @else {{$profile[0]['user']['username']}} @endif</div>
+                    <div class="text-md text-slate-500">@if(!$opened_telephone) +7 *** *** ** ** @else {{$telephone}} @endif</div>
                 </div>
             </div>
 
             {{-- User profile information --}}
             <div class="flex flex-col gap-5 max-w-3xl w-full">
+                @error('msg-error')
+                    <span class="text-sm text-red-400">{{ $message }}</span>
+                @enderror
+                @session('msg-success')
+                    <span class="text-sm text-green-400">{{ session('msg-success') }}</span>
+                @endsession
+
                 <form method="POST" action="{{route('user.open', $profile[0]['id'])}}" class="grid grid-cols-1 md:grid-cols-3 gap-5">
                     @csrf
 
-                    <button type="submit" name="action" value="profile" class="flex items-center w-full border border-slate-900 text-black px-4 py-2 rounded-md font-medium text-sm text-center">
-                        Открыть закрытую информацию
+                    <button type="submit" name="action" value="profile" class="flex items-center justify-center w-full border border-slate-900 text-black px-4 py-2 rounded-md font-medium text-sm text-center">
+                        Открыть фото и ФИО
                     </button>
-                    <button type="submit" name="action" value="telephone" class="flex items-center w-full border border-slate-900 text-black px-4 py-2 rounded-md font-medium text-sm text-center">
+                    <button type="submit" name="action" value="telephone" class="flex items-center justify-center w-full border border-slate-900 text-black px-4 py-2 rounded-md font-medium text-sm text-center">
                         Открыть номер телефона
                     </button>
-                    <button type="submit" name="action" value="social" class="flex items-center w-full border border-slate-900 text-black px-4 py-2 rounded-md font-medium text-sm text-center">
+                    <button type="submit" name="action" value="social" class="flex items-center justify-center w-full border border-slate-900 text-black px-4 py-2 rounded-md font-medium text-sm text-center">
                         Открыть социцальные сети
                     </button>
                 </form>
@@ -199,7 +208,11 @@
                         <label class="block text-sm font-medium leading-6 text-gray-900">Instagram</label>
                         <div class="mt-2">
                             <div class="w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm">
-                                {{$profile[0]['instagram']}}
+                                @if (!$opened_social)
+                                    Закрыто    
+                                @else
+                                    {{$profile[0]['instagram'] ?? "Пусто"}}
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -207,7 +220,11 @@
                         <label class="block text-sm font-medium leading-6 text-gray-900">Telegram</label>
                         <div class="mt-2">
                             <div class="w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm">
-                                {{$profile[0]['telegram']}}
+                                @if (!$opened_social)
+                                    Закрыто
+                                @else
+                                    {{$profile[0]['telegram'] ?? "Пусто"}}
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -215,7 +232,11 @@
                         <label class="block text-sm font-medium leading-6 text-gray-900">Facebook</label>
                         <div class="mt-2">
                             <div class="w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm">
-                                {{$profile[0]['facebook']}}
+                                @if (!$opened_social)
+                                    Закрыто    
+                                @else
+                                    {{$profile[0]['facebook'] ?? "Пусто"}}
+                                @endif
                             </div>
                         </div>
                     </div>

@@ -8,7 +8,7 @@
     $age = $currentDate->diff($birthDateObj)->y;
 
 @endphp
-<a href="{{route('user', $data['id'])}}" class="px-4 py-4 rounded-2xl flex flex-col justify-between h-96 bg-cover" style="background-image: url({{asset('storage/images/blur_'.$data['image'])}}); background-position: center;">
+<a href="{{route('user', $data['id'])}}" class="px-4 py-4 rounded-2xl flex flex-col justify-between h-96 bg-cover" style="background-image: url({{ asset('storage/images/' . (!$opened ? 'blur_' : '') . $data['image']) }}); background-position: center;">
     <div class="flex justify-between">
         <div></div>
         <div class="text-white font-medium text-lg">{{$data['id']}}</div>

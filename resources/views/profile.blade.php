@@ -55,7 +55,7 @@
                     {{-- Users favourites profiles --}}
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-5 mt-5"> 
                         @foreach ($favourites_data as $item)
-                            <x-user-card :data="$item['profile']" :favourites="$favourites_list" />
+                            <x-user-card :data="$item['profile']" :favourites="$favourites_list" :opened="$opened_profiles->contains('profile_id', $item['profile']['id'])" />
                         @endforeach
                     </div>
 
