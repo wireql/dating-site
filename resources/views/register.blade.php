@@ -7,7 +7,9 @@
     Header
 
     --}}
-    <x-header />
+    @auth
+        <x-header />   
+    @endauth
 
 
     {{-- 

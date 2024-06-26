@@ -10,6 +10,7 @@ use App\Models\UserViewProfile;
 use App\Services\ProfileService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 
 class ProfileController extends Controller
 {
@@ -32,6 +33,37 @@ class ProfileController extends Controller
             'user' => $user,
             'favourites' => 1,
             'favourites_data' => $favourites,
+            'favourites_list' => $favourites_list,
+            'opened_profiles' => $opened_profiles
+        ]);
+    }
+
+    public function recomendations() {
+        $user = User::query()->where('id', '=', Auth::user()->id)->with('profile')->get();
+
+        $targetDate = Carbon::createFromFormat('Y-m-d', $user[0]['birthday']);
+        $startDate = $targetDate->copy()->subYears(2);
+        $endDate = $targetDate->copy()->addYears(2);
+
+        $userProfile = UserProfile::with('preferences')->find($user[0]['profile']['id']);
+        $preferences = $userProfile->preferences->pluck('name')->toArray();
+
+        $recommendations = User::query()
+            ->whereBetween('birthday', [$startDate->format('Y-m-d'), $endDate->format('Y-m-d')])
+            ->where('id', '!=', Auth::user()->id)
+            ->with('profile')
+            ->whereHas('profile.preferences', function($query) use ($preferences) {
+                $query->whereIn('name', $preferences);
+            })
+            ->get();
+
+        $opened_profiles = UserViewProfile::query()->where('user_id', '=', Auth::user()->id)->get();
+        $favourites_list = UserFavourites::query()->where('user_id', '=', Auth::user()->id)->get();
+
+        return view('profile', [
+            'user' => $user,
+            'recomendations' => 1,
+            'recommendations_data' => $recommendations,
             'favourites_list' => $favourites_list,
             'opened_profiles' => $opened_profiles
         ]);

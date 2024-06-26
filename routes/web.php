@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AdminDashboardController;
+use App\Http\Controllers\AdminUsersController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProfileController;
@@ -37,10 +39,18 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/profile', [ProfileController::class, 'store'])->name('profile.store');
 
     Route::get('/profile/favourites', [ProfileController::class, 'favourites'])->name('profile.favourites');
+    Route::get('/profile/recomendations', [ProfileController::class, 'recomendations'])->name('profile.recomendations');
     Route::post('/profile/favourites/add', [ProfileController::class, 'addFavourites'])->name('profile.favourites-add');
 
     Route::get('/logout', [LoginController::class, 'logout'])->name('login.logout');
 
     Route::get('/profile/{id}', [UserProfileController::class, 'create'])->name('user');
     Route::post('/profile/{id}', [ProfileOpenInfoController::class, 'store'])->name('user.open');
+
+    Route::get('/admin', [AdminDashboardController::class, 'index'])->name('admin');
+    Route::get('/admin/users', [AdminUsersController::class, 'index'])->name('admin.users');
+    Route::get('/admin/users/{id}', [AdminUsersController::class, 'show'])->name('admin.user');
+    Route::delete('/admin/users/{id}', [AdminUsersController::class, 'delete'])->name('admin.user.delete');
+    Route::post('/admin/users/{id}', [AdminUsersController::class, 'update'])->name('admin.user.update');
+    Route::put('/admin/users/{id}', [AdminUsersController::class, 'add'])->name('admin.user.add');
 });

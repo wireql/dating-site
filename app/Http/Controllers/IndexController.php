@@ -14,6 +14,7 @@ class IndexController extends Controller
 
         $users = UserProfile::query()
             ->with('user')
+            ->where('is_active', '=', 1)
             ->whereNotNull('country')
             ->whereNotNull('city')
             ->whereNotNull('nationality')
