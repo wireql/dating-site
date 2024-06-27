@@ -93,4 +93,35 @@ $(document).ready(function(){
     });
 
 
+    $('.prc-crd-1').click(function(){
+        $().simpleModal({
+            name: 'example',
+            title: 'Тариф 5 анкет',
+            content: 'Чтобы купить: <br>Переведите 1000₸ на номер 7 (999) 999-99-99<br>Отправьте чек на Whatsapp 7 (999) 999-99-99',
+            size: 'small', // or integer for px
+            freeze: true,
+        });
+    });
+
+    $('.prc-crd-2').click(function(){
+        $().simpleModal({
+            name: 'example',
+            title: 'Тариф 10 анкет',
+            content: 'Чтобы купить: <br>Переведите 2000₸ на номер 7 (999) 999-99-99<br>Отправьте чек на Whatsapp 7 (999) 999-99-99',
+            size: 'small', // or integer for px
+            freeze: true,
+        });
+    });
+
+    $('.prc-crd-3').click(function(){
+        $().simpleModal({
+            name: 'example',
+            title: 'Тариф 10 анкет + соц. сети',
+            content: 'Чтобы купить: <br>Переведите 2500₸ на номер 7 (999) 999-99-99<br>Отправьте чек на Whatsapp 7 (999) 999-99-99',
+            size: 'small', // or integer for px
+            freeze: true,
+        });
+    });
+
+
 });

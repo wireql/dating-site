@@ -19,8 +19,10 @@
 
         <!-- Styles -->
         @vite('resources/css/app.css')
+        @vite('resources/css/jquery.simple-modal.min.css')
 
         @vite('resources/js/app.js')
+        @vite('resources/js/jquery.simple-modal.min.js')
     </head>
     <body>
 
