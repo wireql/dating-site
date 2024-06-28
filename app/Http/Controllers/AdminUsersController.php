@@ -76,7 +76,15 @@ class AdminUsersController extends Controller
         }
 
         $user = User::query()->where('id', '=', Auth::user()->id)->with('profile')->first();
-        $user_data = User::query()->where('id', '=', $id)->with('profile')->with('profile.hobbies')->with('profile.preferences')->first();
+        $user_data = User::query()->where('id', '=', $id)
+        ->with('profile')
+        ->with('profile.hobbies')
+        ->with('profile.preferences')
+        ->with('profile.parents')
+        ->with('profile.hobbies.hobby')
+        ->with('profile.preferences.preference')
+        ->with('profile.parents.parent')
+        ->first();
 
         return view('admin/user', [
             'user' => $user,
