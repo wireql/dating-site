@@ -5,9 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ProfilePreference extends Model
+class ProfileAbout extends Model
 {
     use HasFactory;
+
+    protected $table = 'profile_about';
 
     protected $fillable = [
         'profile_id',
@@ -17,5 +19,4 @@ class ProfilePreference extends Model
     public function preference() {
         return $this->belongsTo(Preferences::class, 'preference_id');
     }
-    
 }

@@ -7,11 +7,10 @@ $(document).ready(function(){
         e.preventDefault();
         let newHobby = $('#new-hobby').val();
         if (newHobby) {
-            let hobbyId = 'hobby-' + newHobby.toLowerCase().replace(/\s+/g, '-');
             $('#hobbies').append(
                 '<div class="flex items-center mt-2">' +
-                    '<input type="checkbox" name="hobbies[]" value="' + newHobby + '" id="' + hobbyId + '" class="h-4 w-4 text-black border-gray-300 rounded focus:ring-black">' +
-                    '<label for="' + hobbyId + '" class="ml-2 block text-sm text-gray-900">' + newHobby + '</label>' +
+                    '<input type="checkbox" name="hobbies[new][]" value="' + newHobby + '" class="h-4 w-4 text-black border-gray-300 rounded focus:ring-black">' +
+                    '<label class="ml-2 block text-sm text-gray-900">' + newHobby + '</label>' +
                 '</div>'
             );
             $('#new-hobby').val('');
@@ -22,14 +21,27 @@ $(document).ready(function(){
         e.preventDefault();
         let newPreference = $('#new-preference').val().trim();
         if (newPreference) {
-            let preferenceId = 'preference-' + newPreference.toLowerCase().replace(/\s+/g, '-');
             $('#preferences').append(
                 '<div class="flex items-center mt-2">' +
-                    '<input type="checkbox" name="preferences[]" value="' + newPreference + '" id="' + preferenceId + '" class="h-4 w-4 text-black border-gray-300 rounded focus:ring-black">' +
-                    '<label for="' + preferenceId + '" class="ml-2 block text-sm text-gray-900">' + newPreference + '</label>' +
+                    '<input type="checkbox" name="preferences[new][]" value="' + newPreference + '" class="h-4 w-4 text-black border-gray-300 rounded focus:ring-black">' +
+                    '<label class="ml-2 block text-sm text-gray-900">' + newPreference + '</label>' +
                 '</div>'
             );
             $('#new-preference').val('');
+        }
+    });
+
+    $('#add-preferencesabot').click(function(e) {
+        e.preventDefault();
+        let newPreference = $('#new-preferencesabot').val().trim();
+        if (newPreference) {
+            $('#preferencesabot').append(
+                '<div class="flex items-center mt-2">' +
+                    '<input type="checkbox" name="preferencesabot[new][]" value="' + newPreference + '" class="h-4 w-4 text-black border-gray-300 rounded focus:ring-black">' +
+                    '<label class="ml-2 block text-sm text-gray-900">' + newPreference + '</label>' +
+                '</div>'
+            );
+            $('#new-preferencesabot').val('');
         }
     });
 

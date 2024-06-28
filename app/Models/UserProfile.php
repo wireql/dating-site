@@ -29,6 +29,7 @@ class UserProfile extends Model
         'facebook',
         'education',
         'message',
+        'child_trauma'
     ];
 
     public function user() {
@@ -43,6 +44,16 @@ class UserProfile extends Model
     public function preferences()
     {
         return $this->hasMany(ProfilePreference::class, 'profile_id');
+    }
+
+    public function about()
+    {
+        return $this->hasMany(ProfileAbout::class, 'profile_id');
+    }
+
+    public function parents()
+    {
+        return $this->hasMany(ProfileParents::class, 'profile_id');
     }
 
     public function getUsersActiveProfiles() {

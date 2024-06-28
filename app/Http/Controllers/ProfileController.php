@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UserProfileStoreRequest;
+use App\Models\Hobby;
+use App\Models\Parents;
+use App\Models\Preferences;
 use App\Models\User;
 use App\Models\UserFavourites;
 use App\Models\UserProfile;
@@ -15,10 +18,29 @@ use Carbon\Carbon;
 class ProfileController extends Controller
 {
     public function create() {
-        $user = User::query()->where('id', '=', Auth::user()->id)->with('profile')->with('profile.hobbies')->with('profile.preferences')->get();
+        $user = User::query()->where('id', '=', Auth::user()->id)
+        ->with('profile')
+        ->with('profile.hobbies')
+        ->with('profile.preferences')
+        ->with('profile.about')
+        ->with('profile.parents')
+        ->with('profile.hobbies.hobby')
+        ->with('profile.preferences.preference')
+        ->with('profile.about.preference')
+        ->with('profile.parents.parent')
+        ->get();
+
+        $preferences = Preferences::query()->get();
+        $hobbies = Hobby::query()->get();
+        $parents = Parents::query()->get();
+
+        // return $user;
 
         return view('profile', [
             'user' => $user,
+            'preferences' => $preferences,
+            'hobbies' => $hobbies,
+            'parents' => $parents
         ]);
     }
 
@@ -45,14 +67,15 @@ class ProfileController extends Controller
         $startDate = $targetDate->copy()->subYears(2);
         $endDate = $targetDate->copy()->addYears(2);
 
-        $userProfile = UserProfile::with('preferences')->find($user[0]['profile']['id']);
-        $preferences = $userProfile->preferences->pluck('name')->toArray();
+        $userProfile = UserProfile::with('preferences')->with('preferences.preference')->find($user[0]['profile']['id']);
+        $preferences = $userProfile->preferences->pluck('preference.name')->toArray();
 
         $recommendations = User::query()
             ->whereBetween('birthday', [$startDate->format('Y-m-d'), $endDate->format('Y-m-d')])
             ->where('id', '!=', Auth::user()->id)
             ->with('profile')
-            ->whereHas('profile.preferences', function($query) use ($preferences) {
+            ->with('profile.preferences.preference')
+            ->whereHas('profile.preferences.preference', function($query) use ($preferences) {
                 $query->whereIn('name', $preferences);
             })
             ->get();

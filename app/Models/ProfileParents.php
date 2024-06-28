@@ -5,17 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ProfilePreference extends Model
+class ProfileParents extends Model
 {
     use HasFactory;
 
     protected $fillable = [
         'profile_id',
-        'preference_id',
+        'parent_id',
     ];
 
-    public function preference() {
-        return $this->belongsTo(Preferences::class, 'preference_id');
+    public function parent() {
+        return $this->belongsTo(Parents::class, 'parent_id');
     }
-    
 }

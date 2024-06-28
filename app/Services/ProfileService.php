@@ -3,9 +3,14 @@
 namespace App\Services;
 
 use App\Http\Requests\UserProfileStoreRequest;
+use App\Models\Hobby;
+use App\Models\Parents;
+use App\Models\Preferences;
+use App\Models\ProfileAbout;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use App\Models\ProfileHobby;
+use App\Models\ProfileParents;
 use App\Models\ProfilePreference;
 use App\Models\UserProfile;
 use App\Models\UserViewProfile;
@@ -26,12 +31,29 @@ class ProfileService {
 
             ProfileHobby::where('profile_id', $profile_id)->delete();
 
-            foreach ($request['hobbies'] as $hobby) {
+            $newPreferenceIds = [];
+            if(isset($request['hobbies']['new'])) {
+                foreach ($request['hobbies']['new'] as $preference) {
                 
-                ProfileHobby::create([
-                    'profile_id' => $profile_id,
-                    'name' => $hobby,
-                ]);
+                    $newPreference = Hobby::create([
+                        'name' => $preference
+                    ]);
+    
+                    $newPreferenceIds[] = $newPreference->id;
+                }
+
+                $allPreferenceIds = array_merge($request['hobbies'], $newPreferenceIds);
+                $request['hobbies'] = $allPreferenceIds;
+            }
+
+            foreach ($request['hobbies'] as $key => $hobby) {
+                
+                if($key !== "new") {
+                    ProfileHobby::create([
+                        'profile_id' => $profile_id,
+                        'hobby_id' => $hobby,
+                    ]);
+                }
 
             }
         }
@@ -40,11 +62,76 @@ class ProfileService {
 
             ProfilePreference::where('profile_id', $profile_id)->delete();
 
-            foreach ($request['preferences'] as $preference) {
+            $newPreferenceIds = [];
+            if(isset($request['preferences']['new'])) {
+                foreach ($request['preferences']['new'] as $preference) {
                 
-                ProfilePreference::create([
+                    $newPreference = Preferences::create([
+                        'name' => $preference
+                    ]);
+    
+                    $newPreferenceIds[] = $newPreference->id;
+                }
+
+                $allPreferenceIds = array_merge($request['preferences'], $newPreferenceIds);
+                $request['preferences'] = $allPreferenceIds;
+            }
+
+            foreach ($request['preferences'] as $key => $preference) {
+                
+                if($key !== "new") {
+                    ProfilePreference::create([
+                        'profile_id' => $profile_id,
+                        'preference_id' => $preference,
+                    ]);
+                }
+
+            }
+
+        }
+
+
+        if(isset($request['preferencesabot'])) {
+
+            ProfileAbout::where('profile_id', $profile_id)->delete();
+
+            $newPreferenceIds = [];
+            if(isset($request['preferencesabot']['new'])) {
+                foreach ($request['preferencesabot']['new'] as $preference) {
+                
+                    $newPreference = Preferences::create([
+                        'name' => $preference
+                    ]);
+    
+                    $newPreferenceIds[] = $newPreference->id;
+                }
+
+                $allPreferenceIds = array_merge($request['preferencesabot'], $newPreferenceIds);
+                $request['preferencesabot'] = $allPreferenceIds;
+            }
+
+            foreach ($request['preferencesabot'] as $key => $preference) {
+                
+                if($key !== "new") {
+                    ProfileAbout::create([
+                        'profile_id' => $profile_id,
+                        'preference_id' => $preference,
+                    ]);
+                }
+
+            }
+
+        }
+
+        if(isset($request['parents'])) {
+
+            ProfileParents::where('profile_id', $profile_id)->delete();
+
+            foreach ($request['parents'] as $key => $preference) {
+                
+                ProfileParents::create([
                     'profile_id' => $profile_id,
-                    'name' => $preference,
+                    'parent_id' => $preference,
                 ]);
 
             }

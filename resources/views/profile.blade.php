@@ -50,7 +50,7 @@
                 @if (!isset($favourites) && !isset($recomendations))
 
                     {{-- User profile form --}}
-                    <x-user-profile-form :user="$user"/>
+                    <x-user-profile-form :user="$user" :preferences="$preferences" :hobbies="$hobbies" :parents="$parents"/>
 
                 @endif
 

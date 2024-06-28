@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminDashboardController;
+use App\Http\Controllers\AdminDatasController;
 use App\Http\Controllers\AdminUsersController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\LoginController;
@@ -53,4 +54,14 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/admin/users/{id}', [AdminUsersController::class, 'delete'])->name('admin.user.delete');
     Route::post('/admin/users/{id}', [AdminUsersController::class, 'update'])->name('admin.user.update');
     Route::put('/admin/users/{id}', [AdminUsersController::class, 'add'])->name('admin.user.add');
+
+    Route::get('/admin/datas', [AdminDatasController::class, 'index'])->name('admin.datas');
+    Route::post('/admin/datas/hobby', [AdminDatasController::class, 'create_hobby'])->name('admin.datas.hobby.add');
+    Route::post('/admin/datas/hobby/{id}', [AdminDatasController::class, 'action_hobby'])->name('admin.datas.hobby');
+
+    Route::post('/admin/datas/preferences', [AdminDatasController::class, 'create_preferences'])->name('admin.datas.preferences.add');
+    Route::post('/admin/datas/preferences/{id}', [AdminDatasController::class, 'action_preferences'])->name('admin.datas.preferences');
+
+    Route::post('/admin/datas/parents', [AdminDatasController::class, 'create_parents'])->name('admin.datas.parents.add');
+    Route::post('/admin/datas/parents/{id}', [AdminDatasController::class, 'action_parents'])->name('admin.datas.parents');
 });

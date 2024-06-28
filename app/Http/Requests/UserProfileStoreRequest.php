@@ -31,6 +31,7 @@ class UserProfileStoreRequest extends FormRequest
             'height' => ['required', 'numeric'],
             'weight' => ['required', 'numeric'],
             'education' => ['required', 'string'],
+            'child_trauma' => ['nullable', 'string'],
 
             'instagram' => ['nullable', 'string'],
             'telegram' => ['nullable', 'string'],

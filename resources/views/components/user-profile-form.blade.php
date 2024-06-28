@@ -122,85 +122,6 @@
                 <input name="profession" value="{{$user[0]['profile']['profession']}}" class="block w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6">
             </div>
         </div>
-        <div class="">
-            <label class="block text-sm font-medium leading-6 text-gray-900">Хобби</label>
-            <div class="mt-2">
-                <div id="hobbies" class="grid grid-cols-2">
-                    <div class="flex items-center">
-                        <input type="checkbox" name="hobbies[]" value="Чтение" id="hobby-reading" class="h-4 w-4 text-black border-gray-300 rounded focus:ring-black" {{ in_array('Чтение', $user[0]['profile']['hobbies']->pluck('name')->toArray()) ? 'checked' : '' }}>
-                        <label for="hobby-reading" class="ml-2 block text-sm text-gray-900">Чтение</label>
-                    </div>
-                    <div class="flex items-center mt-2">
-                        <input type="checkbox" name="hobbies[]" value="Спорт" id="hobby-sport" class="h-4 w-4 text-black border-gray-300 rounded focus:ring-black" {{ in_array('Спорт', $user[0]['profile']['hobbies']->pluck('name')->toArray()) ? 'checked' : '' }}>
-                        <label for="hobby-sport" class="ml-2 block text-sm text-gray-900">Спорт</label>
-                    </div>
-                    <div class="flex items-center mt-2">
-                        <input type="checkbox" name="hobbies[]" value="Путешествия" id="hobby-travel" class="h-4 w-4 text-black border-gray-300 rounded focus:ring-black" {{ in_array('Путешествия', $user[0]['profile']['hobbies']->pluck('name')->toArray()) ? 'checked' : '' }}>
-                        <label for="hobby-travel" class="ml-2 block text-sm text-gray-900">Путешествия</label>
-                    </div>
-                    <div class="flex items-center mt-2">
-                        <input type="checkbox" name="hobbies[]" value="Музыка" id="hobby-music" class="h-4 w-4 text-black border-gray-300 rounded focus:ring-black" {{ in_array('Музыка', $user[0]['profile']['hobbies']->pluck('name')->toArray()) ? 'checked' : '' }}>
-                        <label for="hobby-music" class="ml-2 block text-sm text-gray-900">Музыка</label>
-                    </div>
-
-                    @foreach($user[0]['profile']['hobbies']->reject(function ($hobby) {
-                        return in_array($hobby['name'], ['Чтение', 'Спорт', 'Путешествия', 'Музыка']);
-                    })->pluck('name')->toArray(); as $hobby)
-                    @php
-                        $isInProfile = in_array($hobby, $user[0]['profile']['hobbies']->pluck('name')->toArray());
-                    @endphp
-                    <div class="flex items-center mt-2">
-                        <input type="checkbox" name="hobbies[]" value="{{ $hobby }}" id="hobby-{{ Str::slug($hobby) }}" class="h-4 w-4 text-black border-gray-300 rounded focus:ring-black" {{ $isInProfile ? 'checked' : '' }}>
-                        <label for="hobby-{{ Str::slug($hobby) }}" class="ml-2 block text-sm text-gray-900">{{ $hobby }}</label>
-                    </div>
-                    @endforeach
-                </div>
-                <div class="flex items-center mt-2 gap-2">
-                    <input type="text" id="new-hobby" class="text-black w-1/2 border-gray-300 rounded focus:ring-black border border-slate-400 w-32 py-1.5 px-2 text-sm">
-                    <button id="add-hobbies" class="bg-slate-900 w-1/2 text-white px-4 py-2 rounded-md font-medium text-sm">Добавить</button>
-                </div>
-            </div>
-        </div>
-
-        <div class="">
-            <label class="block text-sm font-medium leading-6 text-gray-900">Предпочтения</label>
-            <div class="mt-2">
-                <div id="preferences" class="grid grid-cols-2">
-                    <div class="flex items-center">
-                        <input type="checkbox" name="preferences[]" value="Еда и напитки" id="preference-eat" class="h-4 w-4 text-black border-gray-300 rounded focus:ring-black" {{ in_array('Еда и напитки', $user[0]['profile']['preferences']->pluck('name')->toArray()) ? 'checked' : '' }}>
-                        <label for="preference-eat" class="ml-2 block text-sm text-gray-900">Еда и напитки</label>
-                    </div>
-                    <div class="flex items-center mt-2">
-                        <input type="checkbox" name="preferences[]" value="Хобби и интересы" id="preference-hobby" class="h-4 w-4 text-black border-gray-300 rounded focus:ring-black" {{ in_array('Хобби и интересы', $user[0]['profile']['preferences']->pluck('name')->toArray()) ? 'checked' : '' }}>
-                        <label for="preference-hobby" class="ml-2 block text-sm text-gray-900">Хобби и интересы</label>
-                    </div>
-                    <div class="flex items-center mt-2">
-                        <input type="checkbox" name="preferences[]" value="Развлечения" id="preference-game" class="h-4 w-4 text-black border-gray-300 rounded focus:ring-black" {{ in_array('Развлечения', $user[0]['profile']['preferences']->pluck('name')->toArray()) ? 'checked' : '' }}>
-                        <label for="preference-game" class="ml-2 block text-sm text-gray-900">Развлечения</label>
-                    </div>
-                    <div class="flex items-center mt-2">
-                        <input type="checkbox" name="preferences[]" value="Работа" id="preference-work" class="h-4 w-4 text-black border-gray-300 rounded focus:ring-black" {{ in_array('Работа', $user[0]['profile']['preferences']->pluck('name')->toArray()) ? 'checked' : '' }}>
-                        <label for="preference-work" class="ml-2 block text-sm text-gray-900">Работа</label>
-                    </div>
-
-                    @foreach($user[0]['profile']['preferences']->reject(function ($hobby) {
-                        return in_array($hobby['name'], ['Еда и напитки', 'Хобби и интересы', 'Развлечения', 'Работа']);
-                    })->pluck('name')->toArray(); as $hobby)
-                    @php
-                        $isInProfile = in_array($hobby, $user[0]['profile']['preferences']->pluck('name')->toArray());
-                    @endphp
-                    <div class="flex items-center mt-2">
-                        <input type="checkbox" name="preferences[]" value="{{ $hobby }}" id="hobby-{{ Str::slug($hobby) }}" class="h-4 w-4 text-black border-gray-300 rounded focus:ring-black" {{ $isInProfile ? 'checked' : '' }}>
-                        <label for="preference-{{ Str::slug($hobby) }}" class="ml-2 block text-sm text-gray-900">{{ $hobby }}</label>
-                    </div>
-                    @endforeach
-                </div>
-                <div class="flex items-center mt-2 gap-2">
-                    <input type="text" id="new-preference" class="text-black w-1/2 border-gray-300 rounded focus:ring-black border border-slate-400 w-32 py-1.5 px-2 text-sm">
-                    <button id="add-preference" class="bg-slate-900 w-1/2 text-white px-4 py-2 rounded-md font-medium text-sm">Добавить</button>
-                </div>
-            </div>
-        </div>
 
         <div class="">
             <label class="block text-sm font-medium leading-6 text-gray-900">Место работы<span class="text-red-400">*</span></label>
@@ -248,6 +169,91 @@
                 <div>кг.</div>
             </div>
         </div>
+
+
+        <div class="">
+            <label class="block text-sm font-medium leading-6 text-gray-900">Хобби</label>
+            <div class="mt-2">
+                <div id="hobbies" class="grid grid-cols-2">
+                    @foreach ($hobbies as $item)
+                        <div class="flex items-center">
+                            <input type="checkbox" name="hobbies[]" value="{{$item['id']}}" class="h-4 w-4 text-black border-gray-300 rounded focus:ring-black" {{ in_array($item['name'], $user[0]['profile']['hobbies']->pluck('hobby.name')->toArray()) ? 'checked' : '' }}>
+                            <label class="ml-2 block text-sm text-gray-900">{{$item['name']}}</label>
+                        </div>
+                    @endforeach
+                </div>
+                <div class="flex items-center mt-2 gap-2">
+                    <input type="text" id="new-hobby" class="text-black w-1/2 border-gray-300 rounded focus:ring-black border border-slate-400 w-32 py-1.5 px-2 text-sm">
+                    <button id="add-hobbies" class="bg-slate-900 w-1/2 text-white px-4 py-2 rounded-md font-medium text-sm">Добавить</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="">
+            <label class="block text-sm font-medium leading-6 text-gray-900">Предпочтения</label>
+            <div class="mt-2">
+                <div id="preferences" class="grid grid-cols-2">
+
+                    @foreach ($preferences as $item)
+                        <div class="flex items-center">
+                            <input type="checkbox" name="preferences[]" value="{{$item['id']}}" class="h-4 w-4 text-black border-gray-300 rounded focus:ring-black" {{ in_array($item['name'], $user[0]['profile']['preferences']->pluck('preference.name')->toArray()) ? 'checked' : '' }}>
+                            <label class="ml-2 block text-sm text-gray-900">{{$item['name']}}</label>
+                        </div>
+                    @endforeach
+                </div>
+                <div class="flex items-center mt-2 gap-2">
+                    <input type="text" id="new-preference" class="text-black w-1/2 border-gray-300 rounded focus:ring-black border border-slate-400 w-32 py-1.5 px-2 text-sm">
+                    <button id="add-preference" class="bg-slate-900 w-1/2 text-white px-4 py-2 rounded-md font-medium text-sm">Добавить</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="">
+            <label class="block text-sm font-medium leading-6 text-gray-900">Про себя</label>
+            <div class="mt-2">
+                <div id="preferencesabot" class="grid grid-cols-2">
+
+                    @foreach ($preferences as $item)
+                        <div class="flex items-center">
+                            <input type="checkbox" name="preferencesabot[]" value="{{$item['id']}}" class="h-4 w-4 text-black border-gray-300 rounded focus:ring-black" {{ in_array($item['name'], $user[0]['profile']['about']->pluck('preference.name')->toArray()) ? 'checked' : '' }}>
+                            <label class="ml-2 block text-sm text-gray-900">{{$item['name']}}</label>
+                        </div>
+                    @endforeach
+                </div>
+                <div class="flex items-center mt-2 gap-2">
+                    <input type="text" id="new-preferencesabot" class="text-black w-1/2 border-gray-300 rounded focus:ring-black border border-slate-400 w-32 py-1.5 px-2 text-sm">
+                    <button id="add-preferencesabot" class="bg-slate-900 w-1/2 text-white px-4 py-2 rounded-md font-medium text-sm">Добавить</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="">
+            <label class="block text-sm font-medium leading-6 text-gray-900">Родители</label>
+            <div class="mt-2">
+                <div class="grid grid-cols-2">
+
+                    @foreach ($parents as $item)
+                        <div class="flex items-center">
+                            <input type="checkbox" name="parents[]" value="{{$item['id']}}" class="h-4 w-4 text-black border-gray-300 rounded focus:ring-black" {{ in_array($item['name'], $user[0]['profile']['parents']->pluck('parent.name')->toArray()) ? 'checked' : '' }}>
+                            <label class="ml-2 block text-sm text-gray-900">{{$item['name']}}</label>
+                        </div>
+                    @endforeach
+                </div>
+
+            </div>
+        </div>
+
+        <div class="">
+            <label class="block text-sm font-medium leading-6 text-gray-900">Детская травма.</label>
+            @error('child_trauma')
+                <span class="text-sm text-red-400">{{ $message }}</span>
+            @enderror
+            <div class="mt-2">
+                <input name="child_trauma" value="{{$user[0]['profile']['child_trauma']}}" class="block w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6">
+            </div>
+        </div>
+
+        <div class=""></div>
 
         <div class="">
             <label class="block text-sm font-medium leading-6 text-gray-900">Образование<span class="text-red-400">*</span></label>

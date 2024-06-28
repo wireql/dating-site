@@ -119,33 +119,6 @@
                     </div>
 
                     <div class="">
-                        <label class="block text-sm font-medium leading-6 text-gray-900">Хобби</label>
-                        <div class="mt-2">
-                            <div class="grid grid-cols-2">
-                                @foreach($profile[0]['hobbies'] as $hobby)
-                                <div class="flex items-center mt-2">
-                                    <input type="checkbox" name="hobbies[]" value="{{ $hobby['name'] }}" id="hobby-{{ Str::slug($hobby['name']) }}" class="h-4 w-4 text-black border-gray-300 rounded focus:ring-black" checked>
-                                    <label for="hobby-{{ Str::slug($hobby['name']) }}" class="ml-2 block text-sm text-gray-900">{{ $hobby['name'] }}</label>
-                                </div>
-                                @endforeach
-                            </div>
-                        </div>
-                    </div>
-                    <div class="">
-                        <label class="block text-sm font-medium leading-6 text-gray-900">Предпочтения</label>
-                        <div class="mt-2">
-                            <div class="grid grid-cols-2">
-                                @foreach($profile[0]['preferences'] as $hobby)
-                                <div class="flex items-center mt-2">
-                                    <input type="checkbox" name="hobbies[]" value="{{ $hobby['name'] }}" id="hobby-{{ Str::slug($hobby['name']) }}" class="h-4 w-4 text-black border-gray-300 rounded focus:ring-black" checked>
-                                    <label for="hobby-{{ Str::slug($hobby['name']) }}" class="ml-2 block text-sm text-gray-900">{{ $hobby['name'] }}</label>
-                                </div>
-                                @endforeach
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="">
                         <label class="block text-sm font-medium leading-6 text-gray-900">Место работы</label>
                         <div class="mt-2">
                             <div class="w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm">
@@ -181,6 +154,73 @@
                             </div>
                             <div>см.</div>
                         </div>
+                    </div>
+
+                    <div class="">
+                        <label class="block text-sm font-medium leading-6 text-gray-900">Хобби</label>
+                        <div class="mt-2">
+                            <div class="grid grid-cols-2">
+                                @foreach($profile[0]['hobbies'] as $hobby)
+                                <div class="flex items-center mt-2">
+                                    <input type="checkbox" class="h-4 w-4 text-black border-gray-300 rounded focus:ring-black" checked>
+                                    <label class="ml-2 block text-sm text-gray-900">{{ $hobby['hobby']['name'] }}</label>
+                                </div>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                    <div class="">
+                        <label class="block text-sm font-medium leading-6 text-gray-900">Предпочтения</label>
+                        <div class="mt-2">
+                            <div class="grid grid-cols-2">
+                                @foreach($profile[0]['preferences'] as $hobby)
+                                <div class="flex items-center mt-2">
+                                    <input type="checkbox" class="h-4 w-4 text-black border-gray-300 rounded focus:ring-black" checked>
+                                    <label class="ml-2 block text-sm text-gray-900">{{ $hobby['preference']['name'] }}</label>
+                                </div>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="">
+                        <label class="block text-sm font-medium leading-6 text-gray-900">Про себя</label>
+                        <div class="mt-2">
+                            <div class="grid grid-cols-2">
+                                @foreach($profile[0]['about'] as $hobby)
+                                <div class="flex items-center mt-2">
+                                    <input type="checkbox" class="h-4 w-4 text-black border-gray-300 rounded focus:ring-black" checked>
+                                    <label class="ml-2 block text-sm text-gray-900">{{ $hobby['preference']['name'] }}</label>
+                                </div>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="">
+                        <label class="block text-sm font-medium leading-6 text-gray-900">Родители</label>
+                        <div class="mt-2">
+                            <div class="grid grid-cols-2">
+                                @foreach($profile[0]['parents'] as $hobby)
+                                <div class="flex items-center mt-2">
+                                    <input type="checkbox" class="h-4 w-4 text-black border-gray-300 rounded focus:ring-black" checked>
+                                    <label class="ml-2 block text-sm text-gray-900">{{ $hobby['parent']['name'] }}</label>
+                                </div>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="">
+                        <label class="block text-sm font-medium leading-6 text-gray-900">Детская травма</label>
+                        <div class="mt-2">
+                            <div class="w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm">
+                                {{$profile[0]['child_trauma']}}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="">
                     </div>
 
                     <div class="">

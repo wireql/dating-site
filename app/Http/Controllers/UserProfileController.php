@@ -12,7 +12,16 @@ class UserProfileController extends Controller
     
     public function create($id) {
 
-        $profile = UserProfile::query()->where('id', '=', $id)->with('hobbies')->with('preferences')->with('user')->get();
+        $profile = UserProfile::query()->where('id', '=', $id)
+        ->with('hobbies')
+        ->with('hobbies.hobby')
+        ->with('preferences')
+        ->with('preferences.preference')
+        ->with('about')
+        ->with('about.preference')
+        ->with('parents')
+        ->with('parents.parent')
+        ->with('user')->get();
         $opened_profile = UserViewProfile::query()->where('user_id', '=', Auth::user()->id)->where('profile_id', '=', $id)->first();
 
         if($profile->isEmpty()) {
