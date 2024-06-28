@@ -21,10 +21,10 @@
                     </a>
                     </li>
                     <li>
-                    <a href="/#feedback"
+                    {{-- <a href="/#feedback"
                         class="block py-1.5 font-sans text-base font-normal leading-relaxed text-gray-700 antialiased transition-colors hover:text-blue-gray-900">
                         Отзывы
-                    </a>
+                    </a> --}}
                     </li>
                 </ul>
 
@@ -58,7 +58,7 @@
             <a href="{{route('index')}}">jup.kz</a>.
             </p>
             <div class="flex gap-4 text-blue-gray-900 sm:justify-center">
-            <a href="#" class="block font-sans text-base antialiased font-light leading-relaxed transition-opacity text-inherit opacity-80 hover:opacity-100">
+            <a href="https://t.me/jupkz" class="block font-sans text-base antialiased font-light leading-relaxed transition-opacity text-inherit opacity-80 hover:opacity-100">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M15 10L11 14L17 20L21 4L3 11L7 13L9 19L12 15" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>                        

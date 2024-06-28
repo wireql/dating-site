@@ -109,7 +109,7 @@ $(document).ready(function(){
         $().simpleModal({
             name: 'example',
             title: 'Тариф 5 анкет',
-            content: 'Чтобы купить: <br>Переведите 1000₸ на номер 7 (999) 999-99-99<br>Отправьте чек на Whatsapp 7 (999) 999-99-99',
+            content: 'Чтобы купить: <br>Переведите 1000₸ на карту 4400 4302 8891 7385<br>Отправьте чек на Whatsapp +7 (702) 136 70-77',
             size: 'small', // or integer for px
             freeze: true,
         });
@@ -119,7 +119,7 @@ $(document).ready(function(){
         $().simpleModal({
             name: 'example',
             title: 'Тариф 10 анкет',
-            content: 'Чтобы купить: <br>Переведите 2000₸ на номер 7 (999) 999-99-99<br>Отправьте чек на Whatsapp 7 (999) 999-99-99',
+            content: 'Чтобы купить: <br>Переведите 2000₸ на карту 4400 4302 8891 7385<br>Отправьте чек на Whatsapp +7 (702) 136 70-77',
             size: 'small', // or integer for px
             freeze: true,
         });
@@ -129,7 +129,7 @@ $(document).ready(function(){
         $().simpleModal({
             name: 'example',
             title: 'Тариф 10 анкет + соц. сети',
-            content: 'Чтобы купить: <br>Переведите 2500₸ на номер 7 (999) 999-99-99<br>Отправьте чек на Whatsapp 7 (999) 999-99-99',
+            content: 'Чтобы купить: <br>Переведите 2500₸ на карту 4400 4302 8891 7385<br>Отправьте чек на Whatsapp +7 (702) 136 70-77',
             size: 'small', // or integer for px
             freeze: true,
         });

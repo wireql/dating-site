@@ -113,6 +113,7 @@
         Feedback
 
         --}}
+        {{--
         <div class="my-20">
             <div class="text-5xl font-bold text-center mb-10" id="feedback">Отзывы</div>
 
@@ -143,6 +144,7 @@
                 </div>
             </div>
         </div>
+        --}}
         
 
     </div>

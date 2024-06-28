@@ -6,7 +6,7 @@
         <div class="hidden lg:flex items-center gap-10 text-slate-600 text-lg font-medium">
             <a href="{{route('index')}}" class="">Главная</a>
             <a href="/#tariffs" class="">Тарифы</a>
-            <a href="/#feedback" class="">Отзывы</a>
+            {{-- <a href="/#feedback" class="">Отзывы</a> --}}
         </div>
         @guest
             <a href="{{route('login')}}" class="hidden lg:flex items-center font-semibold text-sm gap-1 border-2 border-gray-300 rounded-3xl hover:cursor-pointer px-4 py-2">
